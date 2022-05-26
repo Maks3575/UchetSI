@@ -1,0 +1,152 @@
+﻿.window {
+    position: absolute;
+    right: 60px;
+    background: #dbcfcf72;
+    padding: 10px;
+    display: none;
+}
+
+.button {
+    background: #000;
+    color: #fff;
+    margin-left: 5px;
+}
+
+.window_active {
+    display: block;
+}
+
+.window__title {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+}
+
+.window__buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 0 0;
+}
+
+.window__button-clear {
+    cursor: pointer;
+    text-align: center;
+    margin: 10px 0 0 0;
+}
+
+.button_edit {
+    background: #14a118;
+    color: #fff;
+     margin-left: 5px;
+}
+
+
+.main-block {
+    position: absolute;
+}
+
+
+
+    .table th {
+        font-weight: bold;
+        padding: 5px;
+        background: #efefef;
+        border: 1px solid #dddddd;
+    }
+
+    .table td {
+        border: 1px solid #dddddd;
+        padding: 5px;
+    }
+
+.table-box {
+    max-width: 100%;
+    overflow: auto;
+    position: relative;
+    margin-top: 5px;
+    width: 1100px;
+}
+
+    .table-box p {
+        font-size: larger;
+        font-weight: bold;
+    }
+
+    .table-box table {
+        margin-bottom: 20px;
+        border: 15px solid #F2F8F8;
+        border-top: 5px solid #F2F8F8;
+
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        display: inline-block;
+        vertical-align: top;
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+thead {
+    border: 1px solid #ccc;
+}
+
+.table-box th {
+    font-weight: bold;
+    padding: 5px;
+    background: #efefef;
+    border: 1px solid #dddddd;
+}
+
+.table-box td {
+    border: 1px solid #dddddd;
+    padding: 5px;
+}
+
+.table-box tr td:first-child, .table tr th:first-child {
+    border-left: none;
+}
+
+.table-box tr td:last-child, .table tr th:last-child {
+    border-right: none;
+}
+
+    td:nth-last-child(-n+2) {
+        text-align: right;
+    }
+
+@media screen and (max-width: 732px) {
+    .table-box {
+        overflow-x: scroll;
+    }
+}
+
+.scroll-right:after {
+    content: '';
+    display: block;
+    width: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    background: radial-gradient(ellipse at right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 15px 100%;
+    background-position: 100% 0%;
+}
+
+.scroll-left:before {
+    content: '';
+    display: block;
+    width: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 500;
+    background: radial-gradient(ellipse at left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 0 center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 15px 100%;
+}

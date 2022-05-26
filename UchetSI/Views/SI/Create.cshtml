@@ -1,0 +1,37 @@
+﻿@using UchetSI.ViewModels
+@model SIViewModel
+
+<form method="post">
+    <p style="font-weight: 1000">
+        <b>Наименование</b><br>
+       
+@*    <p style="font-weight: 600">
+        <b>Тип, марка оборудования</b><br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.TOE.NameTypeOfEquipment">
+    <p style="font-weight: 600">
+        <b>Серийный номер</b><br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.SI.SerialNumber" >
+    <p style="font-weight: 600"><b>Шкала характеристик</b><br>
+    <p style="margin-left:30px">
+        Нижний предел<br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.MT.LowerLimit" >
+    <p style="margin-left:30px">
+        Верхний предел<br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.MT.UpperLimit" >*@
+    <p style="font-weight: 600">
+        Единица измерения<br>
+        @Html.DropDownList("UnitOfMeasurement", ViewBag.UnitOfMeasurementSL as SelectList, new {@class="form-select"})
+@*    <p style="font-weight: 600">
+        <b>Состояние оборудования</b><br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.STAT.NameStatus" >
+    <p style="font-weight: 600">
+        <b>Дата выпуска</b><br>
+        <input class="form-control" type="date" size="40" value="@ViewBag.SI.ReleaseDate.Date.ToString("d")" >*@
+    <p style="font-weight: 600">
+        <b>Выходной сигнал</b><br>
+         @Html.DropDownList("OutputSignal", ViewBag.OutputSignalSL as SelectList, new {@class="form-select"})
+    <p style="font-weight: 600">
+        <b>Межповерочный интервал</b><br>
+         @Html.DropDownList("VerificationInterval", ViewBag.VerificationIntervalSL as SelectList, new {@class="form-select"})
+    
+</form>

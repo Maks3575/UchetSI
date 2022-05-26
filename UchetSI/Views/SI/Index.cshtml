@@ -1,0 +1,38 @@
+﻿@*@{
+    ViewData["Title"] = "Index";
+    }
+*@
+<h4 style="margin-top: 20px">Средства измерения установленные на позиции</h4>
+<div class="text-end">
+    <a class="btn btn-primary" asp-controller="SI" asp-action="Create">
+        <i class="bi bi-plus-circle"></i> &nbsp;Добавить средство изверения
+    </a>
+</div>
+<form>
+    <p style="font-weight: 1000">
+        <b>Наименование</b><br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.DTOE.NameDescription" disabled>
+    <p style="font-weight: 600">
+        <b>Тип, марка оборудования</b><br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.TOE.NameTypeOfEquipment" disabled>
+    <p style="font-weight: 600">
+        <b>Серийный номер</b><br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.SI.SerialNumber" disabled>
+    <p style="font-weight: 600"><b>Шкала характеристик</b><br>
+    <p style="margin-left:30px">
+        Нижний предел<br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.MT.LowerLimit" disabled>
+    <p style="margin-left:30px">
+        Верхний предел<br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.MT.UpperLimit" disabled>
+    <p style="margin-left:30px">
+        Единица измерения<br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.UM.UnitName" disabled>
+    <p style="font-weight: 600">
+        <b>Состояние оборудования</b><br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.STAT.NameStatus" disabled>
+    <p style="font-weight: 600">
+        <b>Дата выпуска</b><br>
+        <input class="form-control" type="text" size="40" value="@ViewBag.SI.ReleaseDate.Date.ToString("d")" disabled>
+</form>
+

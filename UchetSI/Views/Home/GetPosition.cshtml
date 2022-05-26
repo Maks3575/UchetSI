@@ -1,0 +1,24 @@
+﻿@model IEnumerable<UchetSI.Data.Models.Position>
+@{
+    ViewData["Title"] = "GetPosition";
+}
+
+@foreach (var pos in Model)
+{
+    <tr id="trPos" onmouseover="this.style.backgroundColor='#DDD'" onmouseout="this.style.backgroundColor='white'"
+    onclick="location.href='@Url.Action("Index", "SI", new { idPosition = pos.Id })'">
+        <td>
+            @pos.NamePosition
+        </td>
+        <td>
+            @pos.Paz
+        </td>
+        <td>
+            @pos.NameParameter
+        </td>
+        <td target="_blank" onclick="event.stopPropagation();">
+            <input type="submit" value="Редактировать" class=" window__button-add window__button button_edit" />
+        </td>
+    </tr>
+}
+

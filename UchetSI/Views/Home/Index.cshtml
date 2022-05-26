@@ -1,0 +1,332 @@
+﻿@model UchetSI.Data.Models.Location
+@*@model UchetSI.ViewModels.LocationViewModel*@
+
+
+
+<div>
+    <h1>
+    </h1>
+
+    <h4>Выберите организацию</h4>
+    <div>
+        <div class="d-flex">
+            @Html.DropDownList("organization", ViewBag.Organization as SelectList, new {@class="form-select"})
+            <input type="submit" value="Добавить" class="window__organization-button window__button-add window__button button" />
+            <div class="window window__organization">
+                <form method="post" class="window__block" data>
+                    <div class="window__title">Добавление</div>
+                    <div class="window__subtitle">Организация</div>
+                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <div>
+                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                    </div>
+                    <input asp-for="TypeLocationId" type="text" hidden value="1" />
+                    <div class="window__buttons">
+                        <input type="submit" class="window__button button" value="Ок">
+                        <div class="button window__button window__button-clear">Закрыть</div>
+                    </div>
+                </form>
+            </div>
+            <input type="submit" value="Редактировать" class=" window__button-add window__button button_edit" />
+            <div class="window window__organization">
+                <form method="post" class="window__block">
+                    <div class="window__title">Редактирование</div>
+                    <div class="window__subtitle">Организация</div>
+                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <div>
+                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                    </div>
+                    <input asp-for="TypeLocationId" type="text" hidden value="1" />
+                    <div class="window__buttons">
+                        <input type="submit" class="window__button button" value="Ок">
+                        <div class="button window__button window__button-clear">Закрыть</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <h4>Выберите подразделение</h4>
+        <div class="d-flex">
+            @Html.DropDownList("division", ViewBag.Division as SelectList, new {@class="form-select"})
+            <input type="submit" value="Добавить" class="window__division-button window__button-add window__button button" />
+            <div class="window window__division">
+                <form method="post" class="window__block">
+                    <div class="window__title">Добавление</div>
+                    <div class="window__subtitle">Подразделение</div>
+                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <div>
+                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                    </div>
+                    <input asp-for="TypeLocationId" type="text" hidden value="2" />
+                    <input asp-for="ParentId" type="text" hidden class="window__parent-id" value="" />
+                    <div class="window__buttons">
+                        <input type="submit" class="window__button button" value="Ок">
+                        <div class="button window__button window__button-clear">Закрыть</div>
+                    </div>
+                </form>
+            </div>
+            <input type="submit" value="Редактировать" class=" button_edit" />
+        </div>
+        <h4>Выберите объект</h4>
+        <div class="d-flex">
+            @Html.DropDownList("objects", ViewBag.Objects as SelectList, new {@class="form-select"})
+            <input type="submit" value="Добавить" class="window__object-button window__button-add window__button button" />
+            <div class="window window__object">
+                <form method="post" class="window__block">
+                    <div class="window__title">Добавление</div>
+                    <div class="window__subtitle">Объект</div>
+                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <div>
+                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                    </div>
+                    <input asp-for="TypeLocationId" type="text" hidden value="3" />
+                    <input asp-for="ParentId" type="text" class="window__parent-id" hidden value="" />
+                    <div class="window__buttons">
+                        <input type="submit" class="window__button button" value="Ок">
+                        <div class="button window__button window__button-clear">Закрыть</div>
+                    </div>
+                </form>
+            </div>
+            <input type="submit" value="Редактировать" class=" button_edit" />
+        </div>
+        <h4>Выберите подобъект</h4>
+        <div class="d-flex">
+            @Html.DropDownList("subobjects", ViewBag.Subobjects as SelectList, new {@class="form-select"})
+            <input type="submit" value="Добавить" class="window__subobject-button window__button window__button-add button" />
+            <div class="window window__subobject">
+                <form method="post" class="window__block">
+                    <div class="window__title">Добавление</div>
+                    <div class="window__subtitle">Подобъект</div>
+                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <div>
+                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                    </div>
+                    <input asp-for="TypeLocationId" type="text" hidden value="4" />
+                    <input asp-for="ParentId" type="text" class="window__parent-id" hidden value="" />
+                    <div class="window__buttons">
+                        <input type="submit" class="window__button button" value="Ок">
+                        <div class="button window__button window__button-clear">Закрыть</div>
+                    </div>
+                </form>
+            </div>
+            <input type="submit" value="Редактировать" class=" button_edit" />
+        </div>
+        <h4 style="margin-top: 20px">Позиции подобъекта</h4>
+
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Наименование
+                        </th>
+                        <th>
+                            Вхождение в паз
+                        </th>
+                        <th>
+                            Контролируемый параметр
+                        </th>
+                        <th>
+                         
+                            <div>
+                                <a class="btn btn-primary" asp-controller="Home" asp-action="CreatePosition">
+                                    <i class="bi bi-plus-circle"></i> &nbsp;Добавить позицию
+                                </a>
+                            </div>
+                        </th>
+
+                </thead>
+                <tbody id="position" name="position">
+                    @foreach (var pos in ViewBag.PositionList)
+                    {
+
+                        <tr onmouseover="this.style.backgroundColor='#DDD'" onmouseout="this.style.backgroundColor='white'"
+                        onclick="location.href='@Url.Action("Index", "SI", new { idPosition = pos.Id })'">
+                            <td>
+                                @pos.NamePosition
+                            </td>
+                            <td>
+                                @pos.Paz
+                            </td>
+                            <td>
+                                @pos.NameParameter
+                            </td>
+                            <td target="_blank" onclick="event.stopPropagation();">
+                                <input type="submit" value="Редактировать" class=" window__button-add window__button button_edit" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    @section scripts{
+    <script type="text/javascript">
+               ///////////////////////////////
+                  
+               $(function(){
+            $('table').wrap('<div class="table-box"></div>');
+
+            function resize_table_box() {
+                $('.table-box').each(function(){
+                    var box_width = $(this).outerWidth();
+                    var table_width = $(this).children('table').prop('scrollWidth');
+                    $(this).removeClass('scroll-left');
+                    if (table_width > box_width) {
+                        $(this).addClass('scroll-right');
+                    } else {
+                        $(this).removeClass('scroll-right');
+                    }
+                });
+            }
+
+            resize_table_box();
+            $( window ).on('resize', function() {
+                resize_table_box();
+            });
+
+            $('.table-box table').on('scroll', function() {
+                var parent = $(this).parent();
+                if ($(this).scrollLeft() + $(this).innerWidth() >= $(this)[0].scrollWidth) {
+                    if (parent.hasClass('scroll-right') ){
+                        parent.removeClass('scroll-right');
+                    }
+                } else if ($(this).scrollLeft() === 0){
+                    if (parent.hasClass('scroll-left')){
+                        parent.removeClass('scroll-left');
+                    }
+                } else {
+                    if(!parent.hasClass('scroll-right')){
+                        parent.addClass('scroll-right');
+                    }
+                    if(!parent.hasClass('scroll-left')){
+                        parent.addClass('scroll-left');
+                    }
+                }
+            });
+        });
+        //////////////////////////////
+
+                let windows = document.querySelectorAll('.window');
+                let buttonsClear = document.querySelectorAll('.window__button-clear');
+                let buttonsAdd = document.querySelectorAll('.window__button-add');
+
+                buttonsAdd.forEach(e => {
+                    e.addEventListener('click', () => {
+                        if(e.classList.contains('window__division-button')) {
+                            let id = document.getElementById('organization').value;
+                            let inputParentId = document.querySelector('.window__division').querySelector('.window__parent-id');
+                            inputParentId.value = id;
+                        } else if (e.classList.contains('window__object-button')) {
+                            let id = document.getElementById('division').value;
+                            let inputParentId = document.querySelector('.window__object').querySelector('.window__parent-id');
+                            inputParentId.value = id;
+                        } else if (e.classList.contains('window__subobject-button')) {
+
+                            let id = document.getElementById('objects').value;
+                            let inputParentId = document.querySelector('.window__subobject').querySelector('.window__parent-id');
+                            inputParentId.value = id;
+                        }
+
+                        hiddenWindows();
+                        e.nextElementSibling.classList.add('window_active');
+                    });
+                })
+
+
+                buttonsClear.forEach(e => {
+                    e.addEventListener('click', () => {
+                        e.closest('.window').classList.remove('window_active');
+                    });
+                })
+
+                function hiddenWindows() {
+                    windows.forEach(e => {
+                        e.classList.remove('window_active');
+                    })
+                }
+
+                let organizations = document.getElementById('organization');
+
+                organizations.addEventListener('change', () => {
+                    $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("GetItems")/' + organizations.value,
+                            success: function (data) {
+
+                                // заменяем содержимое присланным частичным представлением
+                                 while (division.firstChild) {
+                                    division.removeChild(division.firstChild);
+                                }
+
+                                $('#division').html(data)
+                                //$( '#division' ).prop( 'disabled', false );
+                            }
+                        });
+                })
+
+                let division = document.getElementById('division');
+                division.addEventListener('change', () => {
+                    $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("GetItems")/' + division.value,
+                            success: function (data) {
+
+                                // заменяем содержимое присланным частичным представлением
+                                while (objects.firstChild) {
+                                    objects.removeChild(objects.firstChild);
+                                }
+
+                                $('#objects').html(data)
+
+                                //$( '#division' ).prop( 'disabled', false );
+                            }
+                        });
+                })
+
+                let objects = document.getElementById('objects');
+                objects.addEventListener('change', () => {
+                    $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("GetItems")/' + objects.value,
+                            success: function (data) {
+
+                                // заменяем содержимое присланным частичным представлением
+                                while (subobjects.firstChild) {
+                                    subobjects.removeChild(subobjects.firstChild);
+                                }
+
+                                $('#subobjects').html(data)
+
+                                //$( '#division' ).prop( 'disabled', false );
+                            }
+                        });
+                })
+
+                 let subobjects = document.getElementById('subobjects');
+                subobjects.addEventListener('change', () => {
+                    $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("GetPosition")/' + subobjects.value,
+                            success: function (data) {
+
+                                // заменяем содержимое присланным частичным представлением
+                                while (position.firstChild) {
+                                    position.removeChild(position.firstChild);
+                                }
+
+                                $('#position').html(data)
+
+                                //$( '#division' ).prop( 'disabled', false );
+                            }
+                        });
+                })
+
+    </script>
+    @{
+        <partial name="ScriptPartial" />
+    }
+    }
+
+</div>

@@ -22,3 +22,17 @@
     </tr>
 }
 
+@section scripts{
+<script type="text/javascript">
+    buttonsAddPos.forEach(e => {
+                    e.addEventListener('click', () => {
+                        if(e.classList.contains('window__position-button')) {
+                            let id = document.getElementById('subobjects').value;
+                            let inputLocationtId = document.querySelector('.window__object').querySelector('.window__parent-id');
+                            document.querySelector('.window__division').querySelector('.window__parent-id');
+                            inputParentId.value = id;
+                    });
+                })
+</script>
+}
+

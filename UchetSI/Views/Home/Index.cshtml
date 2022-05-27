@@ -128,7 +128,7 @@
                         <th>
                          
                             <div>
-                                <a class="btn btn-primary" asp-controller="Home" asp-action="CreatePosition">
+                                <a @*onclick="location.href='@Url.Action("Index", "SI", new { Posid = LocationId })'"*@ class=" window__position-button btn btn-primary" asp-controller="Home" asp-action="CreatePosition">
                                     <i class="bi bi-plus-circle"></i> &nbsp;Добавить позицию
                                 </a>
                             </div>
@@ -234,6 +234,8 @@
                     });
                 })
 
+                
+
 
                 buttonsClear.forEach(e => {
                     e.addEventListener('click', () => {
@@ -322,6 +324,16 @@
                             }
                         });
                 })
+                 buttonsAddPos.forEach(e => {
+                    e.addEventListener('click', () => {
+                        location.href='@Url.Action("Index", "SI", new { idPosition = subobjects.value })'
+                        if(e.classList.contains('window__division-button')) {
+                            let id = document.getElementById('organization').value;
+                            let inputParentId = document.querySelector('.window__division').querySelector('.window__parent-id');
+                            inputParentId.value = id;
+                        }
+                    });
+                 })
 
     </script>
     @{

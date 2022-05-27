@@ -55,7 +55,7 @@ namespace UchetSI.Controllers
             return View();
 
         }
-      
+
         public IActionResult CreatePosition()
         {
             return View();
@@ -63,26 +63,27 @@ namespace UchetSI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreatePosition(Position obj)
+        public IActionResult CreatePosition(LocationViewModel obj)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Positions.Add(obj);
+            //if (ModelState.IsValid)
+            //{
+                _db.Positions.Add(obj.Pos);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            //}
             return View(obj);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(Location obj)
+        public IActionResult Index(LocationViewModel obj)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Locations.Add(obj);
-                _db.SaveChanges();
-            }
+            //if (ModelState.IsValid)
+            //{
+            _db.Locations.Add(obj.Loc);
+            //_db.Positions.Add(obj.Pos);
+            _db.SaveChanges();
+            //}
             LoadViewBag();
             return View();
 

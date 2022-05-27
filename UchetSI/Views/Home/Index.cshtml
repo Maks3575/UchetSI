@@ -1,4 +1,4 @@
-﻿@model UchetSI.Data.Models.Location
+﻿@model UchetSI.ViewModels.LocationViewModel
 @*@model UchetSI.ViewModels.LocationViewModel*@
 
 
@@ -16,11 +16,11 @@
                 <form method="post" class="window__block" data>
                     <div class="window__title">Добавление</div>
                     <div class="window__subtitle">Организация</div>
-                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <input asp-for="Loc.NameLocation" type="text" class="window__input">
                     <div>
-                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                        <span asp-validation-for="Loc.NameLocation" class="text-danger"></span>
                     </div>
-                    <input asp-for="TypeLocationId" type="text" hidden value="1" />
+                    <input asp-for="Loc.TypeLocationId" type="text" hidden value="1" />
                     <div class="window__buttons">
                         <input type="submit" class="window__button button" value="Ок">
                         <div class="button window__button window__button-clear">Закрыть</div>
@@ -32,11 +32,11 @@
                 <form method="post" class="window__block">
                     <div class="window__title">Редактирование</div>
                     <div class="window__subtitle">Организация</div>
-                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <input asp-for="Loc.NameLocation" type="text" class="window__input">
                     <div>
-                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                        <span asp-validation-for="Loc.NameLocation" class="text-danger"></span>
                     </div>
-                    <input asp-for="TypeLocationId" type="text" hidden value="1" />
+                    <input asp-for="Loc.TypeLocationId" type="text" hidden value="1" />
                     <div class="window__buttons">
                         <input type="submit" class="window__button button" value="Ок">
                         <div class="button window__button window__button-clear">Закрыть</div>
@@ -52,12 +52,12 @@
                 <form method="post" class="window__block">
                     <div class="window__title">Добавление</div>
                     <div class="window__subtitle">Подразделение</div>
-                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <input asp-for="Loc.NameLocation" type="text" class="window__input">
                     <div>
-                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                        <span asp-validation-for="Loc.NameLocation" class="text-danger"></span>
                     </div>
-                    <input asp-for="TypeLocationId" type="text" hidden value="2" />
-                    <input asp-for="ParentId" type="text" hidden class="window__parent-id" value="" />
+                    <input asp-for="Loc.TypeLocationId" type="text" hidden value="2" />
+                    <input asp-for="Loc.ParentId" type="text" hidden class="window__parent-id" value="" />
                     <div class="window__buttons">
                         <input type="submit" class="window__button button" value="Ок">
                         <div class="button window__button window__button-clear">Закрыть</div>
@@ -74,12 +74,12 @@
                 <form method="post" class="window__block">
                     <div class="window__title">Добавление</div>
                     <div class="window__subtitle">Объект</div>
-                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <input asp-for="Loc.NameLocation" type="text" class="window__input">
                     <div>
-                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                        <span asp-validation-for="Loc.NameLocation" class="text-danger"></span>
                     </div>
-                    <input asp-for="TypeLocationId" type="text" hidden value="3" />
-                    <input asp-for="ParentId" type="text" class="window__parent-id" hidden value="" />
+                    <input asp-for="Loc.TypeLocationId" type="text" hidden value="3" />
+                    <input asp-for="Loc.ParentId" type="text" class="window__parent-id" hidden value="" />
                     <div class="window__buttons">
                         <input type="submit" class="window__button button" value="Ок">
                         <div class="button window__button window__button-clear">Закрыть</div>
@@ -90,18 +90,18 @@
         </div>
         <h4>Выберите подобъект</h4>
         <div class="d-flex">
-            @Html.DropDownList("subobjects", ViewBag.Subobjects as SelectList, new {@class="form-select"})
+            @Html.DropDownList("subobjects", ViewBag.Subobjects as SelectList, new {@class="form-select TT"})
             <input type="submit" value="Добавить" class="window__subobject-button window__button window__button-add button" />
             <div class="window window__subobject">
                 <form method="post" class="window__block">
                     <div class="window__title">Добавление</div>
                     <div class="window__subtitle">Подобъект</div>
-                    <input asp-for="NameLocation" type="text" class="window__input">
+                    <input asp-for="Loc.NameLocation" type="text" class="window__input">
                     <div>
-                        <span asp-validation-for="NameLocation" class="text-danger"></span>
+                        <span asp-validation-for="Loc.NameLocation" class="text-danger"></span>
                     </div>
-                    <input asp-for="TypeLocationId" type="text" hidden value="4" />
-                    <input asp-for="ParentId" type="text" class="window__parent-id" hidden value="" />
+                    <input asp-for="Loc.TypeLocationId" type="text" hidden value="4" />
+                    <input asp-for="Loc.ParentId" type="text" class="window__parent-id" hidden value="" />
                     <div class="window__buttons">
                         <input type="submit" class="window__button button" value="Ок">
                         <div class="button window__button window__button-clear">Закрыть</div>
@@ -126,11 +126,11 @@
                             Контролируемый параметр
                         </th>
                         <th>
-                         
+
                             <div>
-                                <a @*onclick="location.href='@Url.Action("Index", "SI", new { Posid = LocationId })'"*@ class=" window__position-button btn btn-primary" asp-controller="Home" asp-action="CreatePosition">
+                                @*  <a class=" window__position-button btn btn-primary" asp-controller="Home" asp-action="CreatePosition">
                                     <i class="bi bi-plus-circle"></i> &nbsp;Добавить позицию
-                                </a>
+                                    </a>*@
                             </div>
                         </th>
 
@@ -157,14 +157,40 @@
                     }
                 </tbody>
             </table>
-
+            <form method="post" action="~/Home/CreatePosition">
+                <div class=" TR border p-3 mt-4">
+                    <div class="row pb-2">
+                        <h2 class="text-primary">Добавление позиции</h2>
+                        <hr />
+                    </div>
+                    <div class="mb-3">
+                        <label>Наименование</label>
+                        <input class="form-control" asp-for="Pos.NamePosition" />
+                        <span asp-validation-for="Pos.NamePosition" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label>Вхождение в паз</label>
+                        <select class="form-select">
+                            <option value="True">Да</option>
+                            <option value="False">Нет</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Контролируемый параметр</label>
+                        <input class="form-control" asp-for="Pos.NameParameter" />
+                        <span asp-validation-for="Pos.NameParameter" class="text-danger"></span>
+                    </div>
+                    <input asp-for="Pos.LocationId" type="text" class="window__parent-id2" hidden value="" />
+                    <button type="submit" class="btn btn-primary" style="width:150px">Добавить</button>
+                </div>
+            </form>
         </div>
     </div>
 
     @section scripts{
     <script type="text/javascript">
                ///////////////////////////////
-                  
+
                $(function(){
             $('table').wrap('<div class="table-box"></div>');
 
@@ -234,7 +260,7 @@
                     });
                 })
 
-                
+
 
 
                 buttonsClear.forEach(e => {
@@ -308,6 +334,12 @@
 
                  let subobjects = document.getElementById('subobjects');
                 subobjects.addEventListener('change', () => {
+                     let id = document.getElementById('subobjects').value;
+                    
+                    let inputParentId = document.querySelector('.window__parent-id2');
+                     //window.alert(id);
+                     inputParentId.value = id;
+                   
                     $.ajax({
                             type: 'GET',
                             url: '@Url.Action("GetPosition")/' + subobjects.value,
@@ -324,16 +356,6 @@
                             }
                         });
                 })
-                 buttonsAddPos.forEach(e => {
-                    e.addEventListener('click', () => {
-                        location.href='@Url.Action("Index", "SI", new { idPosition = subobjects.value })'
-                        if(e.classList.contains('window__division-button')) {
-                            let id = document.getElementById('organization').value;
-                            let inputParentId = document.querySelector('.window__division').querySelector('.window__parent-id');
-                            inputParentId.value = id;
-                        }
-                    });
-                 })
 
     </script>
     @{

@@ -4,9 +4,9 @@ namespace UchetSI.ViewModels
 {
     public class LocationViewModel
     {
-        public IEnumerable<Location> Loc { get; set; }
+        public Location Loc { get; set; }
 
-        public IEnumerable<Position> Pos { get; set; }
+        public Position Pos { get; set; }
 
     }
 }

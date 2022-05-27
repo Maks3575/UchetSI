@@ -5,28 +5,34 @@
     <p style="font-weight: 1000">
         <b>Наименование</b><br>
        
-@*    <p style="font-weight: 600">
+    <p style="font-weight: 600">
         <b>Тип, марка оборудования</b><br>
-        <input class="form-control" type="text" size="40" value="@ViewBag.TOE.NameTypeOfEquipment">
+        @Html.DropDownList("TypeOfEquipment", ViewBag.TypeOfEquipmentsSL as SelectList, new {@class="form-select"})
+@*         <input class="form-control" type="text" size="40" value="@ViewBag" >
+          <input class="form-control" type="text" size="40" value="@ViewBag.SI.SerialNumber" >*@
     <p style="font-weight: 600">
         <b>Серийный номер</b><br>
-        <input class="form-control" type="text" size="40" value="@ViewBag.SI.SerialNumber" >
+        <input asp-for="MT.SerialNumber" class="form-control" type="text" size="40">
+    <p style="font-weight: 600">
+        <b>Номер паспорта</b><br>
+        <input asp-for="MT.PassportNumber" class="form-control" type="text" size="40">
+    <p style="font-weight: 600">
+        <b>Дата выпуска</b><br>
+        <input class="form-control" type="date" size="40" asp-for="MT.ReleaseDate" >
     <p style="font-weight: 600"><b>Шкала характеристик</b><br>
     <p style="margin-left:30px">
         Нижний предел<br>
-        <input class="form-control" type="text" size="40" value="@ViewBag.MT.LowerLimit" >
+        <input class="form-control" type="text" size="40" asp-for="ML.LowerLimit" >
     <p style="margin-left:30px">
         Верхний предел<br>
-        <input class="form-control" type="text" size="40" value="@ViewBag.MT.UpperLimit" >*@
+        <input class="form-control" type="text" size="40" asp-for="ML.UpperLimit">
     <p style="font-weight: 600">
         Единица измерения<br>
         @Html.DropDownList("UnitOfMeasurement", ViewBag.UnitOfMeasurementSL as SelectList, new {@class="form-select"})
 @*    <p style="font-weight: 600">
         <b>Состояние оборудования</b><br>
         <input class="form-control" type="text" size="40" value="@ViewBag.STAT.NameStatus" >
-    <p style="font-weight: 600">
-        <b>Дата выпуска</b><br>
-        <input class="form-control" type="date" size="40" value="@ViewBag.SI.ReleaseDate.Date.ToString("d")" >*@
+*@
     <p style="font-weight: 600">
         <b>Выходной сигнал</b><br>
          @Html.DropDownList("OutputSignal", ViewBag.OutputSignalSL as SelectList, new {@class="form-select"})

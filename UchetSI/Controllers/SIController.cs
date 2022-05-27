@@ -43,13 +43,14 @@ namespace UchetSI.Controllers
         {
             SIViewModel sIVM = new SIViewModel();
 
-            sIVM.OS = _db.OutputSignals.ToList();
+            //sIVM.OS = new SelectList(_db.OutputSignals.ToList(), "Id", "NameOutputSignal");
 
             //SelectList OutputSignalSL = new SelectList(_db.OutputSignals.ToList(), "Id", "NameOutputSignal");
             ViewBag.OutputSignalSL = new SelectList(_db.OutputSignals.ToList(), "Id", "NameOutputSignal");
 
             ViewBag.UnitOfMeasurementSL = new SelectList(_db.UnitOfMeasurements.ToList(), "Id", "UnitName");
             ViewBag.VerificationIntervalSL = new SelectList(_db.VerificationInterval.ToList(), "Id", "Interval");
+            ViewBag.TypeOfEquipmentsSL = new SelectList(_db.TypeOfEquipments.ToList(), "Id", "NameTypeOfEquipment");
 
             return View(sIVM);
         }

@@ -10,13 +10,22 @@
         <td>
             @pos.NamePosition
         </td>
-        <td>
-            @pos.Paz
-        </td>
+        @if (@pos.Paz == true)
+        {
+            <td>
+                Да
+            </td>
+        }
+        else
+        {
+            <td>
+                Нет
+            </td>
+        }
         <td>
             @pos.NameParameter
         </td>
-        <td target="_blank" onclick="event.stopPropagation();">
+        <td onclick="event.stopPropagation();">
             <input type="submit" value="Редактировать" class=" window__button-add window__button button_edit" />
         </td>
     </tr>

@@ -56,10 +56,6 @@ namespace UchetSI.Controllers
 
         }
 
-        public IActionResult CreatePosition()
-        {
-            return View();
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

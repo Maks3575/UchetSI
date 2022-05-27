@@ -144,13 +144,18 @@
                             <td>
                                 @pos.NamePosition
                             </td>
+                            @if(@pos.Paz == true){
                             <td>
-                                @pos.Paz
+                                Да
                             </td>
+                            }else{
+                            <td>
+                                Нет
+                            </td>}
                             <td>
                                 @pos.NameParameter
                             </td>
-                            <td target="_blank" onclick="event.stopPropagation();">
+                            <td  onclick="event.stopPropagation();">
                                 <input type="submit" value="Редактировать" class=" window__button-add window__button button_edit" />
                             </td>
                         </tr>
@@ -170,9 +175,9 @@
                     </div>
                     <div class="mb-3">
                         <label>Вхождение в паз</label>
-                        <select class="form-select">
-                            <option value="True">Да</option>
-                            <option value="False">Нет</option>
+                        <select asp-for="Pos.Paz" class="form-select">
+                            <option value="true">Да</option>
+                            <option value="false">Нет</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -180,7 +185,7 @@
                         <input class="form-control" asp-for="Pos.NameParameter" />
                         <span asp-validation-for="Pos.NameParameter" class="text-danger"></span>
                     </div>
-                    <input asp-for="Pos.LocationId" type="text" class="window__parent-id2" hidden value="" />
+                    <input asp-for="Pos.LocationId" type="text" class="window__parent-id2" hidden value="7" />
                     <button type="submit" class="btn btn-primary" style="width:150px">Добавить</button>
                 </div>
             </form>
@@ -277,7 +282,7 @@
 
                 let organizations = document.getElementById('organization');
 
-                organizations.addEventListener('change', () => {
+                organizations.addEventListener('click', () => {
                     $.ajax({
                             type: 'GET',
                             url: '@Url.Action("GetItems")/' + organizations.value,
@@ -295,7 +300,7 @@
                 })
 
                 let division = document.getElementById('division');
-                division.addEventListener('change', () => {
+                division.addEventListener('click', () => {
                     $.ajax({
                             type: 'GET',
                             url: '@Url.Action("GetItems")/' + division.value,
@@ -314,7 +319,7 @@
                 })
 
                 let objects = document.getElementById('objects');
-                objects.addEventListener('change', () => {
+                objects.addEventListener('click', () => {
                     $.ajax({
                             type: 'GET',
                             url: '@Url.Action("GetItems")/' + objects.value,
@@ -333,13 +338,13 @@
                 })
 
                  let subobjects = document.getElementById('subobjects');
-                subobjects.addEventListener('change', () => {
+                subobjects.addEventListener('click', () => {
                      let id = document.getElementById('subobjects').value;
-                    
+
                     let inputParentId = document.querySelector('.window__parent-id2');
                      //window.alert(id);
                      inputParentId.value = id;
-                   
+
                     $.ajax({
                             type: 'GET',
                             url: '@Url.Action("GetPosition")/' + subobjects.value,

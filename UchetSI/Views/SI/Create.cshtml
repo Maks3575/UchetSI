@@ -5,10 +5,10 @@
     <p style="font-weight: 1000">
         <b>Наименование</b><br>
        
-@*    <p style="font-weight: 600">
-        <b>Тип, марка оборудования</b><br>
-        <input class="form-control" type="text" size="40" value="@ViewBag.TOE.NameTypeOfEquipment">
     <p style="font-weight: 600">
+        <b>Тип, марка оборудования</b><br>
+         @Html.DropDownList( "TypeOfEquipments", ViewBag.UnitOfMeasurementSL as SelectList, new {@class="form-select"})
+@*    <p style="font-weight: 600">
         <b>Серийный номер</b><br>
         <input class="form-control" type="text" size="40" value="@ViewBag.SI.SerialNumber" >
     <p style="font-weight: 600"><b>Шкала характеристик</b><br>

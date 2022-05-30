@@ -13,5 +13,7 @@ namespace UchetSI.ViewModels
         public MeashuringTool MT { get; set; }
 
         public MeasurementLimit ML { get; set; }
+
+        public DescriptionMI DMI { get; set; }
     }
 }

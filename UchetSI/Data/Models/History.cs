@@ -7,6 +7,8 @@
         public int PositionId { get; set; }
         public int StatusId { get; set; }
         public int MeashuringToolId { get; set; }
+
+        public string Comments { get; set; }
         public DateTime DateTimeChange { get; set; }
 
         public Position Position { get; set; }

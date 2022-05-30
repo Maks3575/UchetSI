@@ -85,6 +85,10 @@ namespace UchetSI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Comments")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateTimeChange")
                         .HasColumnType("datetime2");
 
@@ -174,9 +178,14 @@ namespace UchetSI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StatusOfMTId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DescriptionMIId");
+
+                    b.HasIndex("StatusOfMTId");
 
                     b.ToTable("MeashuringTools");
                 });
@@ -261,6 +270,23 @@ namespace UchetSI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Statuses");
+                });
+
+            modelBuilder.Entity("UchetSI.Data.Models.StatusOfMT", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("NameStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StatusOfMTs");
                 });
 
             modelBuilder.Entity("UchetSI.Data.Models.TypeLocation", b =>
@@ -435,7 +461,15 @@ namespace UchetSI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("UchetSI.Data.Models.StatusOfMT", "StatusOfMT")
+                        .WithMany("MeashuringTools")
+                        .HasForeignKey("StatusOfMTId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("DescriptionMI");
+
+                    b.Navigation("StatusOfMT");
                 });
 
             modelBuilder.Entity("UchetSI.Data.Models.Position", b =>
@@ -513,6 +547,11 @@ namespace UchetSI.Migrations
             modelBuilder.Entity("UchetSI.Data.Models.Status", b =>
                 {
                     b.Navigation("Histories");
+                });
+
+            modelBuilder.Entity("UchetSI.Data.Models.StatusOfMT", b =>
+                {
+                    b.Navigation("MeashuringTools");
                 });
 
             modelBuilder.Entity("UchetSI.Data.Models.TypeLocation", b =>

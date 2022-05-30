@@ -18,5 +18,8 @@ namespace UchetSI.Data.Models
 
         public DescriptionMI DescriptionMI { get; set; }
 
+        public int StatusOfMTId { get; set; }
+        public StatusOfMT StatusOfMT { get; set; }
+
     }
 }

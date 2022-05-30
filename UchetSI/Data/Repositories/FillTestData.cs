@@ -20,8 +20,12 @@ namespace UchetSI.Data.Repositories
             //_context.TypeLocations.Add(new TypeLocation { NameTypelocation = "Объект" });
             //_context.TypeLocations.Add(new TypeLocation { NameTypelocation = "Подобъект" });
 
-            //_context.Statuses.Add(new Status { NameStatus = "Исправен" });
-            //_context.Statuses.Add(new Status { NameStatus = "Неисправен" });
+            //_context.Statuses.Add(new Status { NameStatus = "Устанолен" });
+            //_context.Statuses.Add(new Status { NameStatus = "Демонтирован" });
+
+            //_context.StatusOfMTs.Add(new StatusOfMT { NameStatus = "Исправен" });
+            //_context.StatusOfMTs.Add(new StatusOfMT { NameStatus = "Неисправен" });
+            //_context.StatusOfMTs.Add(new StatusOfMT { NameStatus = "Демонтирован" });
 
             //_context.UnitOfMeasurements.Add(new UnitOfMeasurement { UnitName = "МПа" });
             //_context.UnitOfMeasurements.Add(new UnitOfMeasurement { UnitName = "С" });
@@ -104,15 +108,15 @@ namespace UchetSI.Data.Repositories
 
             /////////////////////////////////////////////////////////////////
 
-            //_context.MeashuringTools.Add(new MeashuringTool { SerialNumber = "17942", ReleaseDate = new DateTime(2017, 7, 20), PassportNumber = "g543g255", DescriptionMIId = 1 });
-            //_context.MeashuringTools.Add(new MeashuringTool { SerialNumber = "56365", ReleaseDate = new DateTime(2020, 5, 30), PassportNumber = "g543g255", DescriptionMIId = 2 });
+            //_context.MeashuringTools.Add(new MeashuringTool { SerialNumber = "17942", ReleaseDate = new DateTime(2017, 7, 20), PassportNumber = "g543g255", DescriptionMIId = 1, StatusOfMTId = 1 });
+            //_context.MeashuringTools.Add(new MeashuringTool { SerialNumber = "56365", ReleaseDate = new DateTime(2020, 5, 30), PassportNumber = "g543g255", DescriptionMIId = 2, StatusOfMTId = 1 });
 
             //_context.SaveChanges();
 
-            ////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////
 
-            //_context.Histories.Add(new History { DateTimeChange = new DateTime(2022, 5, 20), PositionId = 1, StatusId = 1, MeashuringToolId = 1 });
-            //_context.Histories.Add(new History { DateTimeChange = new DateTime(2022, 6, 20), PositionId = 2, StatusId = 1, MeashuringToolId = 2 });
+            //_context.Histories.Add(new History { DateTimeChange = new DateTime(2022, 5, 20), PositionId = 1, StatusId = 1, MeashuringToolId = 1, Comments="Комент1" });
+            //_context.Histories.Add(new History { DateTimeChange = new DateTime(2022, 6, 20), PositionId = 2, StatusId = 1, MeashuringToolId = 2, Comments = "Комент2" });
 
             //_context.SaveChanges();
         }

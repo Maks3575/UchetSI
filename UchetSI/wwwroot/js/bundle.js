@@ -721,3 +721,11 @@ var browser=function(){"use strict";var t={name:null,version:null,os:null,osVers
 	};
 
 })(jQuery);
+
+const button = document.querySelector('button');
+const form = document.querySelector('#blablabla');
+const popup = document.querySelector('.popup');
+
+button.addEventListener('click', () => {
+	form.classList.add('open');
+	popup.classList.add('popup_open');

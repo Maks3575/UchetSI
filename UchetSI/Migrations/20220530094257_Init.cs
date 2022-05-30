@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UchetSI.Migrations
 {
-    public partial class _1 : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -73,6 +73,19 @@ namespace UchetSI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Statuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StatusOfMTs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StatusOfMTs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -245,7 +258,8 @@ namespace UchetSI.Migrations
                     SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DescriptionMIId = table.Column<int>(type: "int", nullable: false)
+                    DescriptionMIId = table.Column<int>(type: "int", nullable: false),
+                    StatusOfMTId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -254,6 +268,12 @@ namespace UchetSI.Migrations
                         name: "FK_MeashuringTools_DescriptionMIs_DescriptionMIId",
                         column: x => x.DescriptionMIId,
                         principalTable: "DescriptionMIs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MeashuringTools_StatusOfMTs_StatusOfMTId",
+                        column: x => x.StatusOfMTId,
+                        principalTable: "StatusOfMTs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -267,6 +287,7 @@ namespace UchetSI.Migrations
                     PositionId = table.Column<int>(type: "int", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: false),
                     MeashuringToolId = table.Column<int>(type: "int", nullable: false),
+                    Comments = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateTimeChange = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -348,6 +369,11 @@ namespace UchetSI.Migrations
                 column: "DescriptionMIId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MeashuringTools_StatusOfMTId",
+                table: "MeashuringTools",
+                column: "StatusOfMTId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Positions_LocationId",
                 table: "Positions",
                 column: "LocationId");
@@ -379,6 +405,9 @@ namespace UchetSI.Migrations
 
             migrationBuilder.DropTable(
                 name: "DescriptionMIs");
+
+            migrationBuilder.DropTable(
+                name: "StatusOfMTs");
 
             migrationBuilder.DropTable(
                 name: "Locations");

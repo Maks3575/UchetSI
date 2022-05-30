@@ -30,6 +30,7 @@ namespace UchetSI.Data.Models
         public DbSet<TypeOfEquipment> TypeOfEquipments { get; set; } = null!;
         public DbSet<UnitOfMeasurement> UnitOfMeasurements { get; set; } = null!;
         public DbSet<VerificationInterval> VerificationInterval { get; set; } = null!;
+        public DbSet<StatusOfMT> StatusOfMTs { get; set; } = null!;
        
         public ApplicationContext()
         {

@@ -3,10 +3,30 @@
     }
 *@
 <h4 style="margin-top: 20px">Средства измерения установленные на позиции</h4>
-<div class="text-end">
+<div class="text-end" style="margin-top: 20px">
     <a class="btn btn-primary" asp-controller="SI" asp-action="Create">
         <i class="bi bi-plus-circle"></i> &nbsp;Добавить средство изверения
     </a>
+</div>
+<div class="text-end" style="margin-top: 20px">
+    <button class="btn btn-success btn-add">Установить средство измерения</button>
+</div>
+<div class="popup">
+    <div class="popup__container">
+        <div class="popup__wrapper">
+            <div id="blablabla">
+                <form role="form" autocomplete="off">
+                    <label>Серийный номер</label>
+                  @* @Html.DropDownList("seriya", ViewBag.Subobjects as SelectList, new {@class="form-select TT"})*@
+                   @* <button type="submit" class="btn btn-success">Отправить</button>*@
+                    <div class="window__buttons">
+                        <input type="submit" class="window__button button" value="Ок">
+                        <div class="button window__button window__button-clear">Закрыть</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <form>
     <p style="font-weight: 1000">
@@ -36,3 +56,23 @@
         <input class="form-control" type="text" size="40" value="@ViewBag.SI.ReleaseDate.Date.ToString("d")" disabled>
 </form>
 
+@section scripts{
+<script type="text/javascript">
+
+            let buttonsClear = document.querySelectorAll('.window__button-clear');
+            const button = document.querySelector('.btn-add');
+            const form = document.querySelector('#blablabla');
+            const popup = document.querySelector('.popup');
+
+            button.addEventListener('click', () => {
+                form.classList.add('open');
+                popup.classList.add('popup_open');
+            });
+
+                 buttonsClear.forEach(e => {
+                    e.addEventListener('click', () => {
+                        e.closest('.popup').classList.remove('window_active');
+                    });
+                })
+</script>
+}

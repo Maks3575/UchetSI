@@ -1,0 +1,10 @@
+﻿@model IEnumerable<UchetSI.Data.Models.Position>
+@{
+    ViewData["Title"] = "GetItems";
+}
+
+
+    @foreach (var item in Model )
+    {
+        <option value="@item.Id">@item.NamePosition</option>
+    }

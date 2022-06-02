@@ -2,9 +2,9 @@
 @model SIViewModel
 
 <form method="post">
-    <p style="font-weight: 1000">
+   @* <p style="font-weight: 1000">
         <b>Наименование</b><br>
-       
+       *@
     <p style="font-weight: 600">
         <b>Тип, марка оборудования</b><br>
         @Html.DropDownListFor(model => model.DMI.TypeOfEquipmentId, ViewBag.TypeOfEquipmentsSL as SelectList, new {@class="form-select"})
@@ -39,6 +39,9 @@
     <p style="font-weight: 600">
         <b>Межповерочный интервал</b><br>
          @Html.DropDownListFor(model => model.DMI.VerificationIntervalId, ViewBag.VerificationIntervalSL as SelectList, new {@class="form-select"})
+         <p style="font-weight: 600">
+        <b>Состояние средства измерения</b><br>
+         @Html.DropDownListFor(model => model.MT.StatusOfMTId, ViewBag.StatusOfMT as SelectList, new {@class="form-select"})
 
          @*<input asp-for="DMI.Ou" type="text" class="window__parent-id" hidden value="" />*@
 

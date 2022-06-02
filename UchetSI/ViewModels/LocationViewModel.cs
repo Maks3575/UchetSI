@@ -8,5 +8,8 @@ namespace UchetSI.ViewModels
 
         public Position Pos { get; set; }
 
+        public MeashuringTool MT { get; set; }
+
+        public History His { get; set; }
     }
 }

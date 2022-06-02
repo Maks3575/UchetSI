@@ -56,6 +56,7 @@ namespace UchetSI.Controllers
             ViewBag.UnitOfMeasurementSL = new SelectList(_db.UnitOfMeasurements.ToList(), "Id", "UnitName");
             ViewBag.VerificationIntervalSL = new SelectList(_db.VerificationInterval.ToList(), "Id", "Interval");
             ViewBag.TypeOfEquipmentsSL = new SelectList(_db.TypeOfEquipments.ToList(), "Id", "NameTypeOfEquipment");
+            ViewBag.StatusOfMT = new SelectList(_db.StatusOfMTs.ToList(), "Id", "NameStatus");
 
             return View(sIVM);
         }

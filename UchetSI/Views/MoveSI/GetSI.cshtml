@@ -1,0 +1,51 @@
+﻿@model UchetSI.Data.Models.MeashuringTool;
+@{
+    ViewData["Title"] = "GetPosition";
+}
+
+<tr>
+    <td>Тип, марка оборудования</td>
+    <td>@Model.DescriptionMI.TypeOfEquipment.NameTypeOfEquipment</td>
+</tr>
+
+<tr>
+    <td>Серийный номер</td>
+    <td>@Model.SerialNumber</td>
+</tr>
+
+<tr>
+    <td>Номер паспорта</td>
+    <td>@Model.PassportNumber</td>
+</tr>
+
+<tr>
+    <td>Дата выпуска</td>
+    <td>@Model.ReleaseDate</td>
+</tr>
+
+<tr>
+    >
+    <td>Нижний предел</td>
+    <td>@Model.DescriptionMI.MeasurementLimit.LowerLimit</td>
+</tr>
+<tr>
+    >
+    <td>Верхний предел</td>
+    <td>@Model.DescriptionMI.MeasurementLimit.UpperLimit</td>
+</tr>
+<tr>
+    >
+    <td>Единица измерения</td>
+    <td>@Model.DescriptionMI.UnitOfMeasurement.UnitName</td>
+</tr>
+
+
+<tr>
+    <td>Выходной сигнал</td>
+    <td>@Model.DescriptionMI.outputSignal.NameOutputSignal</td>
+</tr>
+
+<tr>
+    <td>Межповерочный интервал</td>
+    <td>@Model.DescriptionMI.VerificationInterval.Interval</td>
+</tr>

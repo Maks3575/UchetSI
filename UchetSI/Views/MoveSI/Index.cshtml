@@ -1,0 +1,264 @@
+﻿@model UchetSI.ViewModels.LocationViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <form action="~/Home/CreatePosition">
+            <h3 class="h3 text-center" style="margin-bottom:50px">Место установки</h3>
+            <h4 class="h4">Организация</h4>
+            <div class="d-flex">
+                @Html.DropDownList("organization", ViewBag.Organization as SelectList, new {@class="form-select"})
+            </div>
+            <h4 class="h4">Подразделение</h4>
+            <div class="d-flex">
+                @Html.DropDownList("division", ViewBag.Division as SelectList,  new {@class="form-select"})
+            </div>
+            <h4 class="h4">Объект</h4>
+            <div class="d-flex">
+                @Html.DropDownList("objects", ViewBag.Objects as SelectList, new {@class="form-select"})
+            </div>
+            <h4 class="h4">Подобъект</h4>
+            <div class="d-flex">
+                @Html.DropDownList("subobjects", ViewBag.Subobjects as SelectList, new {@class="form-select"})
+            </div>
+            <h4 class="h4">Позиция</h4>
+            <div class="d-flex">
+                @Html.DropDownList("position", ViewBag.PositionList as SelectList,  new { @class=" form-select select2 " })
+            </div>
+            <div class="d-flex">
+                <button type="submit" class="btn btn-success" style="width:200px" >
+                    Найти установленное СИ
+                </button>
+            </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <h3 class="h3 text-center" style="margin-bottom:50px">Информация</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Column heading</th>
+                    </tr>
+                </thead>
+                <tbody id="locpos" name="locpos">
+                    <tr class="table-default">
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody id="simi2" name="simi2">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <form method="post" action="~/MoveSI/MountSITOPosition">
+                @*                <div class="d-flex">
+                    @Html.DropDownListFor(model => model.MT.StatusOfMTId, ViewBag.Status as SelectList, new {@class="form-select"})
+                    </div>*@
+                <div class="d-flex">
+                    @Html.DropDownListFor(model => model.His.StatusId, ViewBag.StatusHis as SelectList, new {@class="form-select"})
+                </div>
+                <p style="font-weight: 600">
+                    <b>Примечание</b><br>
+                    <textarea asp-for="His.Comments" class="form-control" size="40"></textarea>
+                    <input asp-for="His.MeashuringToolId" type="text" class="MT-Id" hidden value="" />
+                    <input asp-for="His.PositionId" type="text" class="Pos-Id" hidden value="" />
+                    <input asp-for="His.DateTimeChange" type="date" id="date-now" hidden value="" />
+                    <button type="submit" class="btn btn-success" style="width:200px">Смонтировать</button> 
+            </form>
+            <form method="post" action="~/MoveSI/DeMountSITOPosition">
+                <button type="submit" class="btn btn-danger" style="width:200px">Демонтировать</button>
+            </form>
+
+
+
+        </div>
+        <div class="col-3">
+            <h3 class="h3 text-center" style="margin-bottom:50px">Средства измерения</h3>
+            <div class="d-flex">
+                @Html.DropDownList("tools", ViewBag.Tools as SelectList,  new { @class=" form-select" })
+            </div>
+            @*<form class="d-flex">
+                <input class="form-control me-sm-2" id="text-search-SI" type="text" placeholder="Search">
+                <button class="btn btn-primary my-2 my-sm-0" id="search-SI" type="submit">Поиск</button>
+                </form>*@
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+<script type="text/javascript">
+
+        let $position = $("#position").select2({
+
+            maximumSelectionLength: 5,
+             placeholder: "Select a state",
+            allowClear: true
+        });
+
+
+    //    $(".js-example-placeholder-single").select2({
+    //    allowClear: true,
+    //    placeholder: "Select a state"
+    //});
+
+        $(".select2").on("change", function () {
+            let id = $("#position").val();
+            let inputParentId = document.querySelector('.Pos-Id');
+            let date = new Date().toISOString().substring(0, 10);
+             $('#date-now').val(date);
+            
+            inputParentId.value = id;
+              $.ajax({
+                     type: 'GET',
+                           url: '@Url.Action("GetPosition")/' + id,
+                              success: function (data) {
+
+                                  // заменяем содержимое присланным частичным представлением
+                                  while (locpos.firstChild) {
+                                      locpos.removeChild(locpos.firstChild);
+                                  }
+
+                                  $('#locpos').html(data)
+                              }
+                     });
+                    
+        });
+
+        let $tool = $("#tools").select2({
+
+            maximumSelectionLength: 5,
+             placeholder: "Select a state",
+            allowClear: true
+        });
+
+           $("#tools").on("change", function () {
+            let id = $("#tools").val();
+            let inputParentId = document.querySelector('.MT-Id');
+            inputParentId.value = id;
+              $.ajax({
+                     type: 'GET',
+                           url: '@Url.Action("GetSI")/' + id,
+                              success: function (data) {
+
+                                  // заменяем содержимое присланным частичным представлением
+                                  while (simi2.firstChild) {
+                                      simi2.removeChild(simi2.firstChild);
+                                  }
+
+                                  $('#simi2').html(data)
+                              }
+                     });
+        });
+
+        //let textSearch = document.getElementById('text-search-SI');
+        //let SearchSI = document.getElementById('search-SI');
+
+        //            SearchSI.addEventListener('click', () => {
+        //                $.ajax({
+        //                        type: 'GET',
+        //                        url: '@Url.Action("GetSI")/' + textSearch.value,
+        //                        success: function (data) {
+
+        //                            // заменяем содержимое присланным частичным представлением
+        //                             while (simi.firstChild) {
+        //                                simi.removeChild(simi.firstChild);
+        //                            }
+
+        //                            $('#simi').html(data)
+        //                            //$( '#division' ).prop( 'disabled', false );
+        //                        }
+        //                    });
+        //            })
+
+         let organizations = document.getElementById('organization');
+
+                    organizations.addEventListener('click', () => {
+                        $.ajax({
+                                type: 'GET',
+                                url: '@Url.Action("GetItem")/' + organizations.value,
+                                success: function (data) {
+
+                                    // заменяем содержимое присланным частичным представлением
+                                     while (division.firstChild) {
+                                        division.removeChild(division.firstChild);
+                                    }
+
+                                    $('#division').html(data)
+                                    //$( '#division' ).prop( 'disabled', false );
+                                }
+                            });
+                    })
+
+                    let division = document.getElementById('division');
+                    division.addEventListener('click', () => {
+                        $.ajax({
+                                type: 'GET',
+                                url: '@Url.Action("GetItem")/' + division.value,
+                                success: function (data) {
+
+                                    // заменяем содержимое присланным частичным представлением
+                                    while (objects.firstChild) {
+                                        objects.removeChild(objects.firstChild);
+                                    }
+
+                                    $('#objects').html(data)
+
+                                    //$( '#division' ).prop( 'disabled', false );
+                                }
+                            });
+                    })
+
+                    let objects = document.getElementById('objects');
+                    objects.addEventListener('click', () => {
+                        $.ajax({
+                                type: 'GET',
+                                url: '@Url.Action("GetItem")/' + objects.value,
+                                success: function (data) {
+
+                                    // заменяем содержимое присланным частичным представлением
+                                    while (subobjects.firstChild) {
+                                        subobjects.removeChild(subobjects.firstChild);
+                                    }
+
+                                    $('#subobjects').html(data)
+
+                                    //$( '#division' ).prop( 'disabled', false );
+                                }
+                            });
+                    })
+                     let subobjects = document.getElementById('subobjects');
+                    subobjects.addEventListener('click', () => {
+
+                        $.ajax({
+                                type: 'GET',
+                                url: '@Url.Action("GetItemPosition")/' + subobjects.value,
+                                success: function (data) {
+
+                                    // заменяем содержимое присланным частичным представлением
+                                    while (position.firstChild) {
+                                        position.removeChild(position.firstChild);
+                                    }
+
+                                    $('#position').html(data)
+
+                                }
+                            });
+                    })
+
+                  
+                
+
+
+     document.getElementsById('date-now').value = Date();
+
+</script>
+
+}
+

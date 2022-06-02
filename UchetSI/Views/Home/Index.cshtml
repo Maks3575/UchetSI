@@ -196,7 +196,7 @@
     <script type="text/javascript">
                ///////////////////////////////
 
-               $(function(){
+    $(function(){
             $('table').wrap('<div class="table-box"></div>');
 
             function resize_table_box() {
@@ -244,6 +244,8 @@
                 let buttonsAdd = document.querySelectorAll('.window__button-add');
 
                 buttonsAdd.forEach(e => {
+                    let inputsAdd = document.querySelectorAll('.window__input');
+
                     e.addEventListener('click', () => {
                         if(e.classList.contains('window__division-button')) {
                             let id = document.getElementById('organization').value;
@@ -263,6 +265,10 @@
                         hiddenWindows();
                         e.nextElementSibling.classList.add('window_active');
                     });
+                    
+                    inputsAdd.forEach( e => {
+                        e.value = '';
+                    })
                 })
 
 
@@ -282,7 +288,7 @@
 
                 let organizations = document.getElementById('organization');
 
-                organizations.addEventListener('click', () => {
+                organizations.addEventListener('change', () => {
                     $.ajax({
                             type: 'GET',
                             url: '@Url.Action("GetItems")/' + organizations.value,
@@ -300,7 +306,7 @@
                 })
 
                 let division = document.getElementById('division');
-                division.addEventListener('click', () => {
+                division.addEventListener('change', () => {
                     $.ajax({
                             type: 'GET',
                             url: '@Url.Action("GetItems")/' + division.value,
@@ -316,10 +322,12 @@
                                 //$( '#division' ).prop( 'disabled', false );
                             }
                         });
+
+                      
                 })
 
                 let objects = document.getElementById('objects');
-                objects.addEventListener('click', () => {
+                objects.addEventListener('change', () => {
                     $.ajax({
                             type: 'GET',
                             url: '@Url.Action("GetItems")/' + objects.value,
@@ -335,10 +343,13 @@
                                 //$( '#division' ).prop( 'disabled', false );
                             }
                         });
+                   
+                    
                 })
+                
 
                  let subobjects = document.getElementById('subobjects');
-                subobjects.addEventListener('click', () => {
+                subobjects.addEventListener('change', () => {
                      let id = document.getElementById('subobjects').value;
 
                     let inputParentId = document.querySelector('.window__parent-id2');

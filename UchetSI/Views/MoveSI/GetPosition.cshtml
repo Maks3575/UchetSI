@@ -1,0 +1,28 @@
+﻿@model UchetSI.ViewModels.LocationAndPositionVM
+@{
+    ViewData["Title"] = "GetPosition";
+}
+
+    <tr class="table-default">
+        <td>Организация </td>
+        <td>@Model.Organization.NameLocation</td>
+    </tr>      
+    <tr>
+        <td>Подразделение </td>
+        <td>@Model.Division.NameLocation</td>
+    </tr>
+    <tr>
+        <td>Объект</td>
+        <td>@Model.Object.NameLocation</td>
+    </tr>
+    <tr>
+        <td>Подобъект</td>
+        <td>@Model.Subobject.NameLocation</td>
+    </tr>
+    <tr>
+        <td>Позиция</td>
+        <td>@Model.Position.NamePosition</td>
+    </tr>
+
+
+

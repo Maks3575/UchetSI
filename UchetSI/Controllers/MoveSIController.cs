@@ -100,20 +100,38 @@ namespace UchetSI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public IActionResult MyAction(string submitButton, LocationViewModel lVM)
+        {
+            switch (submitButton)
+            {
+                case "Смонтировать":
+                    // delegate sending to another controller action
+                    return (MountSITOPosition(lVM));
+                case "Демонтировать":
+                    // call another action to perform the cancellation
+                    return (DeMountSITOPosition(lVM));
+                default:
+                    // If they've submitted the form without a submitButton, 
+                    // just return the view again.
+                    return (View());
+            }
+        }
+
+        
         public IActionResult MountSITOPosition(LocationViewModel lVM)
         {
-            if (lVM.His is null || lVM.His.MeashuringToolId == 0 || lVM.His.PositionId == 0
-                || _db.Histories.Where(h => h.MeashuringToolId == lVM.His.MeashuringToolId)
-                                .OrderByDescending(h => h.DateTimeChange)
-                                .FirstOrDefault()
-                                .PositionId != 0
-                || _db.Histories.Where(h => h.PositionId == lVM.His.PositionId)
-                                .OrderByDescending(h => h.DateTimeChange)
-                                .FirstOrDefault()
-                                .MeashuringToolId != 0
-                || _db.Histories.Where(h => h.PositionId == lVM.His.PositionId)
-                                .OrderByDescending(h => h.DateTimeChange)
-                                .FirstOrDefault().MeashuringToolId == lVM.His.MeashuringToolId)
+            if (lVM.His is null || lVM.His.MeashuringToolId is null || lVM.His.PositionId is null
+               || _db.Histories.Where(h => h.MeashuringToolId == lVM.His.MeashuringToolId)
+                               .OrderByDescending(h => h.DateTimeChange)
+                               .FirstOrDefault()
+                               .PositionId is not null
+               || _db.Histories.Where(h => h.PositionId == lVM.His.PositionId)
+                               .OrderByDescending(h => h.DateTimeChange)
+                               .FirstOrDefault()
+                               .MeashuringToolId is not null
+               || _db.Histories.Where(h => h.PositionId == lVM.His.PositionId)
+                               .OrderByDescending(h => h.DateTimeChange)
+                               .FirstOrDefault().MeashuringToolId == lVM.His.MeashuringToolId)
             {
                 //Это ошибка    
             }
@@ -125,8 +143,7 @@ namespace UchetSI.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+  
         public IActionResult DeMountSITOPosition(LocationViewModel lVM)
         {
             var hist = _db.Histories.Where(h => h.PositionId == lVM.His.PositionId)

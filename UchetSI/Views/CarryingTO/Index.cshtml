@@ -1,0 +1,96 @@
+﻿<style>
+   /* .td {
+        font-size: 12px;
+        padding:0px;
+    }
+
+        .td input {
+            padding: 20px 30px 20px 30px;
+            margin:0px 0px 0px 0px;
+        }*/
+        table th {
+            vertical-align: middle;
+            padding: 10px 5px 10px 5px;
+            text-align:center;
+        }
+
+</style>
+
+<div class="table-box table-parent" style="width:100%;">
+    <table class="table-chaild table table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Наименование<br /> средства измерений/<br /> средства автоматизации</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Контролируемый параметр,<br /> место установки</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Позиция</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Марка, тип</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Серийный <br /> номер</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Шкала<br />  Характеристика<br /> Тип сигнала</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Вид ТО</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Состояние <br /> оборудования</th>
+                <th style="font-size:13px; padding-left:60px; padding-right:60px" ">Примечание</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Дата <br />последнеый <br />поверки</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Дата <br />следующей<br /> поверки</th>
+                <th style="font-size:13px; padding:5px 2px 5px 2px">Год выпуска <br />оборудования</th>
+          
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < 10; i++)
+            {
+            <tr>
+                <th class="td" style="font-size:12px;">Задвижка электрическая</th>
+                <th class="td" style="font-size:12px;">Регулятор пара на выходе котла №1</th>
+                <th class="td" style="font-size:12px;">01-1М</th>
+                <th class="td" style="font-size:12px;">ПЭМ-Б2м</th>
+                <th class="td" style="font-size:12px;">415С0028</th>
+                <th class="td" style="font-size:12px;">DI, 380V</th>
+                <th class="td" style="font-size:12px;">ТО-1</th>
+                <th class="td" style="font-size:12px;">
+                    <select class="form-select">
+                        <option>Исправно</option>
+                        <option>Неисправно</option>
+                    </select>
+                </th>
+                <th class="td">
+                    <input type="text" />
+                </th>
+                <th class="td" style="font-size:12px;">
+                    <input type="date" />
+                </th>
+                <th class="td" style="font-size:12px;">
+                     <input type="date" />
+                </th>
+                <th class="td" style="font-size:12px;">2015</th>
+                 <th>
+                     <input class="btn btn-primary" type="button" value="Внести" />
+                 </th>
+            </tr>
+            }
+
+
+        </tbody>
+    </table>
+    @*
+        @section script{
+        <script type="text/javascript">
+        var tds = document.querySelectorAll('.td');
+
+        for (var i = 0; i < tds.length; i++) {
+        tds[i].addEventListener('click', function func() {
+        var input = document.createElement('input');
+        input.value = this.innerHTML;
+        this.innerHTML = '';
+        this.appendChild(input);
+
+        var td = this;
+        input.addEventListener('blur', function() {
+        td.innerHTML = this.value;
+        td.addEventListener('click', func);
+        });
+
+        this.removeEventListener('click', func);
+        });
+        }
+        </script>
+        }*@

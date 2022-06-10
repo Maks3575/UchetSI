@@ -52,6 +52,8 @@ namespace UchetSI.Controllers
             //var mt = _db.Histories.Where(h => h.Position.Id == pos.Id).OrderByDescending(h => h.Id).FirstOrDefault().MeashuringTool;
 
             LoadViewBag();
+          
+
             return View();
 
         }
@@ -74,6 +76,8 @@ namespace UchetSI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(LocationViewModel obj)
         {
+          
+
             //if (ModelState.IsValid)
             //{
             _db.Locations.Add(obj.Loc);
@@ -94,6 +98,7 @@ namespace UchetSI.Controllers
             List<Location> obj = _db.Locations.Where(ob => ob.ParentId == div.FirstOrDefault().Id).ToList();
             List<Location> subObj = _db.Locations.Where(s => s.ParentId == obj.FirstOrDefault().Id).ToList();
             List<Position> pos = _db.Positions.Where(p => p.LocationId == subObj.FirstOrDefault().Id).ToList();
+           
 
 
             SelectList organization = new SelectList(org, "Id", "NameLocation");
@@ -109,6 +114,15 @@ namespace UchetSI.Controllers
             ViewBag.Subobjects = subobjects;
 
             ViewBag.PositionList = pos;
+
+          //  History history = _db.Histories
+          //.Where(h => h.PositionId == )
+          //.OrderByDescending(h => h.DateTimeChange)
+          //.FirstOrDefault();
+
+          //  var SI = (history is null) ? new MeashuringTool() : _db.MeashuringTools.FirstOrDefault(mt => mt.Id == history.MeashuringToolId);
+
+          //  ViewBag.SERID = SI;
 
         }
 

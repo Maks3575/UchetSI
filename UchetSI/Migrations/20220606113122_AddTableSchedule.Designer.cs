@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UchetSI.Data.Models;
 
@@ -11,9 +12,10 @@ using UchetSI.Data.Models;
 namespace UchetSI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220606113122_AddTableSchedule")]
+    partial class AddTableSchedule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,6 +121,9 @@ namespace UchetSI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("IdLocation")
+                        .HasColumnType("int");
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
@@ -294,6 +299,12 @@ namespace UchetSI.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("HoldingTOId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdHoldingTO")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdTypeTO")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberMonth")

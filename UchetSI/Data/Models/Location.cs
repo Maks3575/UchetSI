@@ -23,6 +23,7 @@ namespace UchetSI.Data.Models
         public TypeLocation? TypeLocation { get; set; }
 
         public List<Position>? Positions { get; set; }
+        public List<HoldingTO>? HoldingTOs { get; set; }
 
 
 

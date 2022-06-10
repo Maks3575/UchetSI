@@ -21,13 +21,13 @@ namespace UchetSI.Controllers
                 .OrderByDescending(h => h.DateTimeChange)
                 .FirstOrDefault();
 
-            var SI = (history is null) ? new MeashuringTool() : _db.MeashuringTools.First(mt => mt.Id == history.MeashuringToolId);
-            var DMI = (history is null) ? new DescriptionMI() : _db.DescriptionMIs.First(dmi => dmi.Id == SI.DescriptionMIId);
-            var TOE = (history is null) ? new TypeOfEquipment() : _db.TypeOfEquipments.First(toe => toe.DescriptionOfEquipmentId == SI.DescriptionMIId);
-            var DTOE = (history is null) ? new DescriptionOfEquipment() : _db.DescriptionOfEquipments.First(dtoe => TOE.DescriptionOfEquipmentId == dtoe.Id);
-            var MT = (history is null) ? new MeasurementLimit() : _db.MeasurementLimits.First(mt => mt.Id == DMI.MeasurementLimitId);
-            var UM = (history is null) ? new UnitOfMeasurement() : _db.UnitOfMeasurements.First(um => um.Id == DMI.UnitOfMeasurementId);
-            var STAT = (history is null) ? new Status() : _db.Statuses.First(s => s.Id == history.StatusId);
+            var SI = (history is null) ? new MeashuringTool() : _db.MeashuringTools.FirstOrDefault(mt => mt.Id == history.MeashuringToolId);
+            var DMI = (history is null) ? new DescriptionMI() : _db.DescriptionMIs.FirstOrDefault(dmi => dmi.Id == SI.DescriptionMIId);
+            var TOE = (history is null) ? new TypeOfEquipment() : _db.TypeOfEquipments.FirstOrDefault(toe => toe.Id == DMI.TypeOfEquipmentId);
+            var DTOE = (history is null) ? new DescriptionOfEquipment() : _db.DescriptionOfEquipments.FirstOrDefault(dtoe => TOE.DescriptionOfEquipmentId == dtoe.Id);
+            var MT = (history is null) ? new MeasurementLimit() : _db.MeasurementLimits.FirstOrDefault(mt => mt.Id == DMI.MeasurementLimitId);
+            var UM = (history is null) ? new UnitOfMeasurement() : _db.UnitOfMeasurements.FirstOrDefault(um => um.Id == DMI.UnitOfMeasurementId);
+            var STAT = (history is null) ? new Status() : _db.Statuses.FirstOrDefault(s => s.Id == history.StatusId);
 
             //var ser = _db.MeashuringTools(mt => mt.SerialNumber).ToList();
 

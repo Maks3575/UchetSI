@@ -1,16 +1,11 @@
 ﻿@model UchetSI.ViewModels.LocationViewModel
-@*@model UchetSI.ViewModels.LocationViewModel*@
 
-
-
-<div>
-    <h1>
-    </h1>
-
+<div style="margin-top:20px">
+  
     <h4>Выберите организацию</h4>
     <div>
         <div class="d-flex">
-            @Html.DropDownList("organization", ViewBag.Organization as SelectList, new {@class="form-select"})
+            @Html.DropDownList("organization", ViewBag.Organization as SelectList, new {@class="form-select select-add-placeholder"})
             <input type="submit" value="Добавить" class="window__organization-button window__button-add window__button button" />
             <div class="window window__organization">
                 <form method="post" class="window__block" data>
@@ -46,7 +41,7 @@
         </div>
         <h4>Выберите подразделение</h4>
         <div class="d-flex">
-            @Html.DropDownList("division", ViewBag.Division as SelectList, new {@class="form-select"})
+            @Html.DropDownList("division", ViewBag.Division as SelectList, new {@class="form-select select-add-placeholder"})
             <input type="submit" value="Добавить" class="window__division-button window__button-add window__button button" />
             <div class="window window__division">
                 <form method="post" class="window__block">
@@ -68,7 +63,7 @@
         </div>
         <h4>Выберите объект</h4>
         <div class="d-flex">
-            @Html.DropDownList("objects", ViewBag.Objects as SelectList, new {@class="form-select"})
+            @Html.DropDownList("objects", ViewBag.Objects as SelectList, new {@class="form-select select-add-placeholder"})
             <input type="submit" value="Добавить" class="window__object-button window__button-add window__button button" />
             <div class="window window__object">
                 <form method="post" class="window__block">
@@ -90,7 +85,7 @@
         </div>
         <h4>Выберите подобъект</h4>
         <div class="d-flex">
-            @Html.DropDownList("subobjects", ViewBag.Subobjects as SelectList, new {@class="form-select TT"})
+            @Html.DropDownList("subobjects", ViewBag.Subobjects as SelectList, new {@class="form-select select-add-placeholder"})
             <input type="submit" value="Добавить" class="window__subobject-button window__button window__button-add button" />
             <div class="window window__subobject">
                 <form method="post" class="window__block">
@@ -126,6 +121,9 @@
                             Контролируемый параметр
                         </th>
                         <th>
+                            Установленное средство измерения
+                        </th>
+                        <th>
 
                             <div>
                                 @*  <a class=" window__position-button btn btn-primary" asp-controller="Home" asp-action="CreatePosition">
@@ -154,6 +152,9 @@
                             </td>}
                             <td>
                                 @pos.NameParameter
+                            </td>
+                            <td  onclick="event.stopPropagation();">
+                               @* @ViewBag.SERID.SerialNumber*@
                             </td>
                             <td  onclick="event.stopPropagation();">
                                 <input type="submit" value="Редактировать" class=" window__button-add window__button button_edit" />
@@ -349,7 +350,7 @@
                 
 
                  let subobjects = document.getElementById('subobjects');
-                subobjects.addEventListener('change', () => {
+                subobjects.addEventListener('click', () => {
                      let id = document.getElementById('subobjects').value;
 
                     let inputParentId = document.querySelector('.window__parent-id2');
@@ -372,11 +373,10 @@
                             }
                         });
                 })
+                 $(".select-add-placeholder").prepend("<option value='' disabled selected>Выберите</option>");
 
     </script>
-    @{
-        <partial name="ScriptPartial" />
-    }
+ 
     }
 
 </div>

@@ -75,6 +75,7 @@ namespace UchetSI.Controllers
             LAPVM.Organization = _db.Locations.First(org => org.Id == LAPVM.Division.ParentId);
             return PartialView(LAPVM);
         }
+
         public ActionResult GetItem(int id)
         {
             return PartialView(_db.Locations.Where(l => l.ParentId == id).ToList());
@@ -120,26 +121,26 @@ namespace UchetSI.Controllers
         
         public IActionResult MountSITOPosition(LocationViewModel lVM)
         {
-            if (lVM.His is null || lVM.His.MeashuringToolId is null || lVM.His.PositionId is null
-               || _db.Histories.Where(h => h.MeashuringToolId == lVM.His.MeashuringToolId)
-                               .OrderByDescending(h => h.DateTimeChange)
-                               .FirstOrDefault()
-                               .PositionId is not null
-               || _db.Histories.Where(h => h.PositionId == lVM.His.PositionId)
-                               .OrderByDescending(h => h.DateTimeChange)
-                               .FirstOrDefault()
-                               .MeashuringToolId is not null
-               || _db.Histories.Where(h => h.PositionId == lVM.His.PositionId)
-                               .OrderByDescending(h => h.DateTimeChange)
-                               .FirstOrDefault().MeashuringToolId == lVM.His.MeashuringToolId)
-            {
-                //Это ошибка    
-            }
-            else
-            {
+            //if (lVM.His is null || lVM.His.MeashuringToolId is null || lVM.His.PositionId is null
+            //   || _db.Histories.Where(h => h.MeashuringToolId == lVM.His.MeashuringToolId)
+            //                   .OrderByDescending(h => h.DateTimeChange)
+            //                   .FirstOrDefault()
+            //                   .PositionId is not null
+            //   || _db.Histories.Where(h => h.PositionId == lVM.His.PositionId)
+            //                   .OrderByDescending(h => h.DateTimeChange)
+            //                   .FirstOrDefault()
+            //                   .MeashuringToolId is not null
+            //   || _db.Histories.Where(h => h.PositionId == lVM.His.PositionId)
+            //                   .OrderByDescending(h => h.DateTimeChange)
+            //                   .FirstOrDefault().MeashuringToolId == lVM.His.MeashuringToolId)
+            //{
+            //    //Это ошибка    
+            //}
+            //else
+            //{
                 _db.Histories.Add(lVM.His);
                 _db.SaveChanges();
-            }
+           // }
             return RedirectToAction("Index");
         }
 

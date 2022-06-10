@@ -1,13 +1,12 @@
 ﻿<style>
-   /* .td {
+    .td {
         font-size: 12px;
-        padding:0px;
     }
 
         .td input {
             padding: 20px 30px 20px 30px;
             margin:0px 0px 0px 0px;
-        }*/
+        }
         table th {
             vertical-align: middle;
             padding: 10px 5px 10px 5px;
@@ -38,10 +37,10 @@
         <tbody>
             @for (int i = 0; i < 10; i++)
             {
-            <tr>
-                <th class="td" style="font-size:12px;">Задвижка электрическая</th>
-                <th class="td" style="font-size:12px;">Регулятор пара на выходе котла №1</th>
-                <th class="td" style="font-size:12px;">01-1М</th>
+            <tr id = "str @i">
+                <th class="td">Задвижка электрическая</th>
+                <th class="td">Регулятор пара на выходе котла №1</th>
+                <th class="td">01-1М</th>
                 <th class="td" style="font-size:12px;">ПЭМ-Б2м</th>
                 <th class="td" style="font-size:12px;">415С0028</th>
                 <th class="td" style="font-size:12px;">DI, 380V</th>
@@ -53,7 +52,7 @@
                     </select>
                 </th>
                 <th class="td">
-                    <input type="text" />
+                    <textarea></textarea>
                 </th>
                 <th class="td" style="font-size:12px;">
                     <input type="date" />

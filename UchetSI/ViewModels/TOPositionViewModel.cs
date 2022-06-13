@@ -6,5 +6,6 @@ namespace UchetSI.ViewModels
     {
         public Position Pos { get; set; }
         public MeashuringTool MT { get; set; }
+        public TypeTO TTO { get; set; }
     }
 }

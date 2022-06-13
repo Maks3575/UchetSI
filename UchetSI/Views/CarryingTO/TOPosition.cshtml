@@ -1,28 +1,37 @@
 ﻿@model UchetSI.ViewModels.TOPositionViewModel
 
-                <th class="td">Задвижка электрическая</th>
-                <th class="td">Регулятор пара на выходе котла №1</th>
-                <th class="td">01-1М</th>
-                <th class="td" style="font-size:12px;">ПЭМ-Б2м</th>
-                <th class="td" style="font-size:12px;">415С0028</th>
-                <th class="td" style="font-size:12px;">DI, 380V</th>
-                <th class="td" style="font-size:12px;">ТО-1</th>
-                <th class="td" style="font-size:12px;">
-                    <select class="form-select">
-                        <option>Исправно</option>
-                        <option>Неисправно</option>
-                    </select>
-                </th>
-                <th class="td">
-                    <textarea></textarea>
-                </th>
-                <th class="td" style="font-size:12px;">
-                    <input type="date" />
-                </th>
-                <th class="td" style="font-size:12px;">
-                     <input type="date" />
-                </th>
-                <th class="td" style="font-size:12px;">2015</th>
-                 <th>
-                     <input class="btn btn-primary" type="button" value="Внести" />
-                 </th>
+<tr>
+    <th class="td" style="width:10px">@Model.MT.DescriptionMI.TypeOfEquipment.DescriptionOfEquipment.NameDescription</th>
+    <th class="td">@Model.Pos.NameParameter</th>
+    <th class="td">@Model.Pos.NamePosition</th>
+    <th class="td" style="font-size:12px;">@Model.MT.DescriptionMI.TypeOfEquipment.NameTypeOfEquipment</th>
+    <th class="td" style="font-size:12px;">@Model.MT.SerialNumber</th>
+    <th class="td" style="font-size:12px;">@Model.MT.DescriptionMI.outputSignal.NameOutputSignal, @Model.MT.DescriptionMI.MeasurementLimit.LowerLimit...@Model.MT.DescriptionMI.MeasurementLimit.UpperLimit @Model.MT.DescriptionMI.UnitOfMeasurement.UnitName</th>
+    <th class="td" style="font-size:12px;">@Model.TTO.NameTO</th>
+    <th class="td" style="font-size:12px;">@Model.MT.StatusOfMT.NameStatus</th>
+
+    @*<th class="td" style="font-size:12px;">
+        <select class="form-select">
+            <option>Исправно</option>
+            <option>Неисправно</option>
+        </select>
+    </th>*@
+
+    <th class="td">
+        <textarea></textarea>
+    </th>
+
+    <th class="td" style="font-size:12px;">
+        <input type="date" />
+    </th>
+
+    <th class="td" style="font-size:12px;">
+         <input type="date" />
+    </th>
+
+    <th class="td" style="font-size:12px;">@Model.MT.ReleaseDate.Year</th>
+    
+    <th>
+         <input class="btn btn-primary" type="button" value="Внести" />
+    </th>
+</tr>

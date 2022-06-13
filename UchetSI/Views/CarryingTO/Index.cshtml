@@ -1,4 +1,5 @@
-﻿<style>
+﻿@model UchetSI.ViewModels.TOViewModel
+<style>
     .td {
         font-size: 12px;
     }
@@ -35,7 +36,12 @@
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < 10; i++)
+            @foreach (var TOPVM in Model.TOPVMs)
+            {
+               @await Html.PartialAsync("TOPosition", TOPVM) 
+            };
+@*
+            @for (int i = 0; i < 3; i++)
             {
                 <tr id="str @i">
                     <th class="td">Задвижка электрическая</th>
@@ -65,7 +71,7 @@
                         <input class="btn btn-primary" type="button" value="Внести" />
                     </th>
                 </tr>
-            }
+            }*@
 
 
         </tbody>

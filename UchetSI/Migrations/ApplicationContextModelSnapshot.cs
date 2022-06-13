@@ -123,11 +123,11 @@ namespace UchetSI.Migrations
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PeriodOfTO")
+                    b.Property<int?>("PeriodOfTO")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("YearEvent")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("YearEvent")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -296,7 +296,7 @@ namespace UchetSI.Migrations
                     b.Property<int>("HoldingTOId")
                         .HasColumnType("int");
 
-                    b.Property<int>("NumberMonth")
+                    b.Property<int?>("NumberMonth")
                         .HasColumnType("int");
 
                     b.Property<int?>("PlanDataTOFrom")

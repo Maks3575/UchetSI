@@ -34,7 +34,14 @@ namespace UchetSI.Controllers
             //var div = _AllLocation.AllDivision;
             //LocationViewModel lvm= new LocationViewModel();
             //_AllLocation.AddTypeLocation();
-            _AddInDb.FillingTestData();
+            
+            
+            
+            //---------------заполнение БД тестовыми значениями-----------
+            //_AddInDb.FillingTestData();
+
+
+             
 
             //lvm.GetTypeLocations = _AllTypeLocation.AllTypeLocations;
             //lvm.getOrganization = _AllLocation.AllOrganization;

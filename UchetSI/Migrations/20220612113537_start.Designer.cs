@@ -12,8 +12,8 @@ using UchetSI.Data.Models;
 namespace UchetSI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220606113122_AddTableSchedule")]
-    partial class AddTableSchedule
+    [Migration("20220612113537_start")]
+    partial class start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,17 +122,14 @@ namespace UchetSI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("IdLocation")
-                        .HasColumnType("int");
-
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PeriodOfTO")
+                    b.Property<int?>("PeriodOfTO")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("YearEvent")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("YearEvent")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -301,13 +298,7 @@ namespace UchetSI.Migrations
                     b.Property<int>("HoldingTOId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdHoldingTO")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdTypeTO")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberMonth")
+                    b.Property<int?>("NumberMonth")
                         .HasColumnType("int");
 
                     b.Property<int?>("PlanDataTOFrom")

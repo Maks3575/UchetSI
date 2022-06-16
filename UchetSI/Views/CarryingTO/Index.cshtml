@@ -3,8 +3,9 @@
     .td {
         font-size: 12px;
     }
-    .td-textarea{
-        padding:0;
+
+    .td-textarea {
+        padding: 0;
     }
 
     table th {
@@ -15,8 +16,37 @@
     }
 
 </style>
+<div class="d-inline-block" style="width:430px; margin-top: 20px;">
+    <h6>Выберите организацию</h6>
+    @Html.DropDownList("organization", ViewBag.Organization as SelectList, new {@class="form-select select-add-placeholder"})
 
-<div class="table-box table-parent" style="width:100%;">
+</div>
+
+<div class=" d-inline-block" style="width:430px;">
+    <h6>Выберите подразделение</h6>
+    @Html.DropDownList("division", ViewBag.Division as SelectList, new {@class="form-select select-add-placeholder"})
+</div>
+<div class=" d-inline-block" style="width:425px;">
+    <h6>Выберите объект</h6>
+    @Html.DropDownList("objects", ViewBag.Objects as SelectList, new {@class="form-select select-add-placeholder"})
+
+</div>
+<input id="btn-up" type="button" value="Выбрать" class="btn btn-success" onclick="location.href='@Url.Action("SearchResult", "CarryingTO", new{id = 4} )'" />
+ 
+@*<script>
+
+      let objects = document.getElementById('objects').value
+     let btn = document.getElementById('btn-up')
+      btn.addEventListener('click', () => {
+        window.location.href = '@Url.Action("SearchResult", "CarryingTO", new {id = 5})'
+
+    })
+
+    // document.innerHTML = "<h1>Today’s date is " + d + "</h1>"
+</script>*@
+@*<input type="button" action=@Url.Action("CarryingTO", "SearchResult", new { id = Model.IdObj }, null)*@
+
+<div class="table-box table-parent" style="width:87%;">
     <table class="table-chaild table table-sm">
         <thead class="thead-dark">
             <tr>
@@ -28,9 +58,9 @@
                 <th>Шкала<br />  Характеристика<br /> Тип сигнала</th>
                 <th>Вид ТО</th>
                 <th>Состояние <br /> оборудования</th>
-                <th>Примечание</th>
-                <th>Дата <br />последнеый <br />поверки</th>
-                <th>Дата <br />следующей<br /> поверки</th>
+                @*<th>Примечание</th>
+                    <th>Дата <br />последнеый <br />поверки</th>
+                    <th>Дата <br />следующей<br /> поверки</th>*@
                 <th>Год <br /> выпуска <br />оборудования</th>
 
             </tr>
@@ -38,64 +68,106 @@
         <tbody>
             @foreach (var TOPVM in Model.TOPVMs)
             {
-               @await Html.PartialAsync("TOPosition", TOPVM) 
+                @await Html.PartialAsync("TOPosition", TOPVM)
             };
-@*
-            @for (int i = 0; i < 3; i++)
-            {
+            @*
+                @for (int i = 0; i < 3; i++)
+                {
                 <tr id="str @i">
-                    <th class="td">Задвижка электрическая</th>
-                    <th class="td">Регулятор пара на выходе котла №1</th>
-                    <th class="td">01-1М</th>
-                    <th class="td" style="font-size:12px;">ПЭМ-Б2м</th>
-                    <th class="td" style="font-size:12px;">415С0028</th>
-                    <th class="td" style="font-size:12px;">DI, 380V</th>
-                    <th class="td" style="font-size:12px;">ТО-1</th>
-                    <th class="td" style="font-size:12px;">
-                        <select class="form-select">
-                            <option>Исправно</option>
-                            <option>Неисправно</option>
-                        </select>
-                    </th>
-                    <th class="td td-textarea">
-                        <textarea></textarea>
-                    </th>
-                    <th class="td" style="font-size:12px;">
-                        <input style="padding:0;" class="form-control" type="date" />
-                    </th>
-                    <th class="td" style="font-size:12px;">
-                        <input  style="padding:0;" class="form-control" type="date" />
-                    </th>
-                    <th class="td" style="font-size:12px;">2015</th>
-                    <th>
-                        <input class="btn btn-primary" type="button" value="Внести" />
-                    </th>
+                <th class="td">Задвижка электрическая</th>
+                <th class="td">Регулятор пара на выходе котла №1</th>
+                <th class="td">01-1М</th>
+                <th class="td" style="font-size:12px;">ПЭМ-Б2м</th>
+                <th class="td" style="font-size:12px;">415С0028</th>
+                <th class="td" style="font-size:12px;">DI, 380V</th>
+                <th class="td" style="font-size:12px;">ТО-1</th>
+                <th class="td" style="font-size:12px;">
+                <select class="form-select">
+                <option>Исправно</option>
+                <option>Неисправно</option>
+                </select>
+                </th>
+                <th class="td td-textarea">
+                <textarea></textarea>
+                </th>
+                <th class="td" style="font-size:12px;">
+                <input style="padding:0;" class="form-control" type="date" />
+                </th>
+                <th class="td" style="font-size:12px;">
+                <input  style="padding:0;" class="form-control" type="date" />
+                </th>
+                <th class="td" style="font-size:12px;">2015</th>
+                <th>
+                <input class="btn btn-primary" type="button" value="Внести" />
+                </th>
                 </tr>
-            }*@
+                }*@
 
 
         </tbody>
     </table>
-    @*
-        @section script{
-        <script type="text/javascript">
-        var tds = document.querySelectorAll('.td');
+    <input type="button" value="Выгрузка в Excel" class="btn btn-success" onclick="location.href='@Url.Action("Export", "CarryingTO")'" />
 
-        for (var i = 0; i < tds.length; i++) {
-        tds[i].addEventListener('click', function func() {
-        var input = document.createElement('input');
-        input.value = this.innerHTML;
-        this.innerHTML = '';
-        this.appendChild(input);
+    @section scripts{
+    <script type="text/javascript">
 
-        var td = this;
-        input.addEventListener('blur', function() {
-        td.innerHTML = this.value;
-        td.addEventListener('click', func);
-        });
 
-        this.removeEventListener('click', func);
-        });
-        }
-        </script>
-        }*@
+        $(".select-add-placeholder").prepend("<option value='' disabled selected>Выберите</option>");
+
+         let organizations = document.getElementById('organization');
+
+                        organizations.addEventListener('change', () => {
+                            $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("GetItem")/' + organizations.value,
+                                    success: function (data) {
+
+                                        // заменяем содержимое присланным частичным представлением
+                                         while (division.firstChild) {
+                                            division.removeChild(division.firstChild);
+                                        }
+
+                                        $('#division').html(data)
+
+                                    }
+                                });
+                        })
+
+                        let division = document.getElementById('division');
+                        division.addEventListener('click', () => {
+                            $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("GetItem")/' + division.value,
+                                    success: function (data) {
+
+                                        // заменяем содержимое присланным частичным представлением
+                                        while (objects.firstChild) {
+                                            objects.removeChild(objects.firstChild);
+                                        }
+
+                                        $('#objects').html(data)
+
+                                    }
+                                });
+                        })
+
+                        // let objects = document.getElementById('objects');
+                        //objects.addEventListener('click', () => {
+                        //    $.ajax({
+                        //            type: 'GET',
+                        //            url: '@Url.Action("SearchResult")/' + objects.value,
+                        //            success: function (data) {
+
+                        //                 while (TOPosition.firstChild) {
+                        //                    TOPosition.removeChild(objects.firstChild);
+                        //                }
+
+                        //                $('#TOPosition').html(data)
+
+                        //            }
+
+                        //        });
+                        //})
+    </script>
+    }
+

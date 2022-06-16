@@ -134,6 +134,9 @@
 
                 </thead>
                 <tbody id="position" name="position">
+                    @{
+                        int i = 0;
+                     }
                     @foreach (var pos in ViewBag.PositionList)
                     {
 
@@ -153,13 +156,13 @@
                             <td>
                                 @pos.NameParameter
                             </td>
-                            <td  onclick="event.stopPropagation();">
-                               @* @ViewBag.SERID.SerialNumber*@
+                            <td >
+                               @ViewBag.SILIST[i].SerialNumber
                             </td>
-                            <td  onclick="event.stopPropagation();">
-                                <input type="submit" value="Редактировать" class=" window__button-add window__button button_edit" />
-                            </td>
+                          
                         </tr>
+                            i++;
+
                     }
                 </tbody>
             </table>

@@ -69,11 +69,18 @@ namespace UchetSI.Controllers
         {
             LocationAndPositionVM LAPVM = new LocationAndPositionVM();
             LAPVM.Position = _db.Positions.FirstOrDefault(p => p.Id == id);
-            LAPVM.Subobject = _db.Locations.First(s => s.Id == LAPVM.Position.LocationId);
-            LAPVM.Object = _db.Locations.First(o => o.Id == LAPVM.Subobject.ParentId);
-            LAPVM.Division = _db.Locations.First(d => d.Id == LAPVM.Object.ParentId);
-            LAPVM.Organization = _db.Locations.First(org => org.Id == LAPVM.Division.ParentId);
-            return PartialView(LAPVM);
+            if (id != 0)
+            {
+                LAPVM.Subobject = _db.Locations.First(s => s.Id == LAPVM.Position.LocationId);
+                LAPVM.Object = _db.Locations.First(o => o.Id == LAPVM.Subobject.ParentId);
+                LAPVM.Division = _db.Locations.First(d => d.Id == LAPVM.Object.ParentId);
+                LAPVM.Organization = _db.Locations.First(org => org.Id == LAPVM.Division.ParentId);
+
+                return PartialView(LAPVM);
+            }
+
+            return PartialView();
+
         }
 
         public ActionResult GetItem(int id)

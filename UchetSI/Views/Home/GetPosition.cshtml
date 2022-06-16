@@ -2,7 +2,9 @@
 @{
     ViewData["Title"] = "GetPosition";
 }
-
+@{
+    int i = 0;
+}
 @foreach (var pos in Model)
 {
     <tr id="trPos" onmouseover="this.style.backgroundColor='#DDD'" onmouseout="this.style.backgroundColor='white'"
@@ -25,10 +27,11 @@
         <td>
             @pos.NameParameter
         </td>
-        <td onclick="event.stopPropagation();">
-            <input type="submit" value="Редактировать" class=" window__button-add window__button button_edit" />
+        <td>
+            @ViewBag.SILIST[i].SerialNumber
         </td>
     </tr>
+     i++;
 }
 
 

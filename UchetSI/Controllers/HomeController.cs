@@ -34,14 +34,14 @@ namespace UchetSI.Controllers
             //var div = _AllLocation.AllDivision;
             //LocationViewModel lvm= new LocationViewModel();
             //_AllLocation.AddTypeLocation();
-            
-            
-            
+
+
+
             //---------------заполнение БД тестовыми значениями-----------
             //_AddInDb.FillingTestData();
 
 
-             
+
 
             //lvm.GetTypeLocations = _AllTypeLocation.AllTypeLocations;
             //lvm.getOrganization = _AllLocation.AllOrganization;
@@ -122,6 +122,27 @@ namespace UchetSI.Controllers
 
             ViewBag.PositionList = pos;
 
+            List<MeashuringTool> SIList = new List<MeashuringTool>();
+            foreach (var item in pos)
+            {
+
+                var hist = _db.Histories.Where(h => h.PositionId == item.Id && h.MeashuringTool != null).ToList();
+                if (hist == null || hist.Count == 0)
+                {
+                    MeashuringTool MT = new MeashuringTool();
+                    MT.SerialNumber = "Позиция пуста";
+                    SIList.Add(MT);
+                }
+                else
+                {
+                    var x = _db.Histories.Where(h => h.PositionId == item.Id && h.MeashuringTool != null)
+                        .OrderByDescending(h => h.DateTimeChange).FirstOrDefault();
+                    SIList.Add(_db.MeashuringTools.First(mt => mt.Id == x.MeashuringToolId));
+                };
+            }
+            ViewBag.SIList = SIList;
+            
+
           //  History history = _db.Histories
           //.Where(h => h.PositionId == )
           //.OrderByDescending(h => h.DateTimeChange)
@@ -141,6 +162,7 @@ namespace UchetSI.Controllers
 
         public ActionResult GetPosition(int id)
         {
+            LoadViewBag();
             return PartialView(_db.Positions.Where(p => p.LocationId == id).ToList());
         }
 

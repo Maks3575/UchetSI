@@ -2,7 +2,8 @@
 @{
     ViewData["Title"] = "GetPosition";
 }
-
+@if( Model != null)
+{
     <tr class="table-default">
         <td>Организация </td>
         <td>@Model.Organization.NameLocation</td>
@@ -23,6 +24,8 @@
         <td>Позиция</td>
         <td>@Model.Position.NamePosition</td>
     </tr>
+}
+
 
 
 
